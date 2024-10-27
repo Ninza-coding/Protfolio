@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Read All Contacts</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        a {
+            color: blue;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th {
+            background-color: #4CAF50; /* Header color */
+            color: white;
+            padding: 10px;
+            text-align: left;
+        }
+
+        td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        /* Different colors for each column */
+        td:nth-child(1) { background-color: #e7f3fe; } /* ID */
+        td:nth-child(2) { background-color: #dff0d8; } /* Name */
+        td:nth-child(3) { background-color: #fcf8e3; } /* Email */
+        td:nth-child(4) { background-color: #f2dede; } /* Message */
+        td:nth-child(5) { background-color: #d9edf7; } /* Phone */
+        td:nth-child(6) { background-color: #f5f5f5; } /* Action */
+
+        tr:hover {
+            background-color: #e0e0e0; /* Row hover effect */
+        }
+
+        .delete-message {
+            color: red;
+            font-weight: bold;
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #f2dede; /* Light red background for delete message */
+            border: 1px solid #ebccd1; /* Border color */
+            display: none; /* Initially hidden */
+        }
+    </style>
+</head>
+<body>
+    <h1>Read All Contacts</h1>
+
+    <a href="dashboard">Admin Home</a><br><br><br>
+    <h2 th:text="${message}"></h2>
+    
+    <div class="delete-message" th:text="${deleteMessage}"></div> <!-- Delete message -->
+
+    <table border="1"> 
+        <thead>
+            <tr>
+                <th>ID</th> 
+                <th>Name</th> 
+                <th>Email</th> 
+                <th>Message</th> 
+                <th>Phone</th> 
+                <th>Action</th> 
+            </tr>
+        </thead>
+        
+        <tbody>
+            <tr th:each="contact : ${allcontacts}">
+                <td th:text="${contact.id}"></td>
+                <td th:text="${contact.name}"></td>
+                <td th:text="${contact.email}"></td>
+                <td th:text="${contact.message}"></td>
+                <td th:text="${contact.phone}"></td>
+                <td><a th:href="@{/admin/deletecontact/{id}(id=${contact.id})}">Delete</a></td>
+            </tr>
+        </tbody>
+    </table>
+
+</body>
+</html>

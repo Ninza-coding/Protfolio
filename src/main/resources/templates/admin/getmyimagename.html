@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<h2>the method is used to get the image name saved in the database with respect to id</h2>
+<h1 th:text="${message}"></h1>
+<form th:action="@{getImage}" method="post" th:object="${imageForm}">
+    <input type="text" th:field="*{id}" placeholder="ID" required>
+    <button type="submit">Submit</button>
+</form>
+
+</body>
+</html>

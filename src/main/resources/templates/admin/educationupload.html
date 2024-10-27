@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Education Upload Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif; /* Professional font */
+            background-color: #f4f4f4; /* Light background color */
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 600px; /* Max width for the form */
+            margin: auto; /* Center the form */
+            padding: 20px;
+            background-color: #fff; /* White background for the form */
+            border-radius: 8px; /* Rounded corners */
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+        }
+
+        h2 {
+            text-align: center; /* Centered heading */
+            color: #333; /* Darker text color for contrast */
+        }
+
+        input[type="text"], textarea {
+            width: 100%; /* Full width */
+            padding: 10px; /* Padding for better appearance */
+            margin-bottom: 15px; /* Space between fields */
+            border: 1px solid #ccc; /* Border styling */
+            border-radius: 4px; /* Rounded corners */
+            font-size: 16px; /* Font size */
+        }
+
+        input[type="submit"] {
+            background-color: #28a745; /* Green background for submit button */
+            color: white; /* White text color */
+            border: none; /* No border */
+            border-radius: 4px; /* Rounded corners */
+            padding: 10px 15px; /* Padding for button */
+            cursor: pointer; /* Pointer cursor on hover */
+            font-size: 16px; /* Font size for button text */
+            transition: background-color 0.3s ease; /* Smooth transition on hover */
+        }
+
+        input[type="submit"]:hover {
+            background-color: #218838; /* Darker green on hover */
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th {
+            background-color: #4CAF50; /* Header color */
+            color: white;
+            padding: 10px;
+            text-align: left;
+        }
+
+        td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        tr:hover {
+            background-color: #e0e0e0; /* Row hover effect */
+        }
+    </style>
+</head>
+<body>
+<a href="dashboard">Admin Home</a><br><br><br>
+
+<div class="container">
+    <h2>Education Upload Form</h2>
+    <h3 th:text="${message}"></h3>
+    <form th:action="@{educationupload}" th:object="${educationUpload}" method="post">
+    
+        <input type="text" name="year" placeholder="Enter Year" required><br>
+        <span style="color:red" th:if="${#fields.hasErrors ('year')}" th:errors="*{year}"></span>
+        
+        <input type="text" name="title" placeholder="Enter Education Title" required><br>
+        <span style="color:red" th:if="${#fields.hasErrors ('title')}" th:errors="*{title}"></span>
+        
+        <input type="text" name="subtitle" placeholder="Enter Education Sub Title" required><br>
+        <span style="color:red" th:if="${#fields.hasErrors ('subtitle')}" th:errors="*{subtitle}"></span>
+        
+        <textarea name="description" placeholder="Enter Description" required></textarea><br>
+        <span style="color:red" th:if="${#fields.hasErrors ('description')}" th:errors="*{description}"></span>
+        <input type="submit" value="Submit">
+    </form>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID</th> 
+                <th>Year</th> 
+                <th>Title</th> 
+                <th>Sub-Title</th> 
+                <th>Description</th> 
+                <th>Action</th> 
+            </tr>
+        </thead>
+        
+        <tbody>
+            <tr th:each="education : ${alleducation}">
+                <td th:text="${education.id}"></td>
+                <td th:text="${education.year}"></td>
+                <td th:text="${education.title}"></td>
+                <td th:text="${education.subtitle}"></td>
+                <td th:text="${education.description}"></td>
+<!--             ""
+ -->                <td><a th:href="@{/admin/deleteeducation/{id}(id=${education.id})}">Delete</a></td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>
+
+</body>
+</html>
