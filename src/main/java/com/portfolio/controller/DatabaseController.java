@@ -21,7 +21,7 @@ public class DatabaseController {
 	@EventListener
 	public void dropDatabase(ContextClosedEvent closedEvent) {
 		databaseService.dropDatabaseService();
-		String path= "/portfolio-1/src/main/resources/static/myprimg/";
+		String path= "/app/src/main/resources/static/myprimg/";
 		String path1="/app/src/main/resources/static/myresume/";
 		
 		File directory= new File(path);

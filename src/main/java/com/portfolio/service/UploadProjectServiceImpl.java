@@ -34,7 +34,7 @@ public class UploadProjectServiceImpl implements UploadProjectService{
 			LocalDateTime now = LocalDateTime.now();
 	        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd_HHmmss");
 	        String timestamp = now.format(formatter);
-			String path="C:\\Users\\praveen\\OneDrive\\Desktop\\projects\\portfolio-1\\src\\main\\resources\\static\\myprimg\\"
+			String path="/app/src/main/resources/static/myprimg/"
 		+timestamp+multipartFile.getOriginalFilename();
 			byte[] bytes=multipartFile.getBytes();
 		FileOutputStream fos= new FileOutputStream(path);

@@ -31,7 +31,7 @@ public class ResumeImportServiceImpl implements ResumeImportService {
 		try {
 			save = resumeImportDao.save(resumeImport);
 			if (save != null) {
-				String path = "C:\\Users\\praveen\\OneDrive\\Desktop\\projects\\portfolio-1\\src\\main\\resources\\static\\myresume\\"
+				String path = "/app/src/main/resources/static/myresume/"
 						+ multipartFile.getOriginalFilename();
 				byte[] bytes = multipartFile.getBytes();
 				
